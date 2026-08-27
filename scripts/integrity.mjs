@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { execFileSync, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -8,9 +8,20 @@ const ROOT = process.cwd();
 const SEARCH_ROOTS = ['packages', 'plugins', 'src'].filter((p) => fs.existsSync(path.join(ROOT, p)));
 const AST_GREP_BIN = path.join(path.dirname(fileURLToPath(import.meta.resolve('@ast-grep/cli/package.json'))), process.platform === 'win32' ? 'ast-grep.exe' : 'ast-grep');
 
-const integrityFiles = execFileSync('rg', ['--files', ...SEARCH_ROOTS], { cwd: ROOT, encoding: 'utf8' })
-  .split('\n')
-  .filter((file) => file.endsWith('.test.mjs') || file.endsWith('.test.js') || file.endsWith('.serial.mjs') || /\/test\/.*\.(?:mjs|js)$/.test(file));
+/**
+ * Find test files without relying on an optional system executable.
+ *
+ * @access private
+ * @returns {string[]} Repository-relative test paths.
+ */
+function findIntegrityFiles() {
+  return SEARCH_ROOTS.flatMap((root) => fs.readdirSync(root, { recursive: true, withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => path.relative(ROOT, path.join(entry.parentPath, entry.name)).split(path.sep).join('/')))
+    .filter((file) => file.endsWith('.test.mjs') || file.endsWith('.test.js') || file.endsWith('.serial.mjs') || /\/test\/.*\.(?:mjs|js)$/.test(file));
+}
+
+const integrityFiles = findIntegrityFiles();
 
 /** @type {Array<{file: string, line: number, message: string, sample: string}>} */
 const findings = [];
