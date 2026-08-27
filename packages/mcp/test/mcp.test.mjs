@@ -11,6 +11,7 @@ import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 
 import { plugin, create } from 'sumo/plugin';
+import { VERSION } from 'sumo';
 import { create as createMcpServer, serve } from 'sumo/mcp';
 import { openTempDb, closeTempDb } from 'sumo/util/testing';
 
@@ -147,7 +148,7 @@ test('default server identity uses the package version', /** Verify the package 
   const peer = new Client({ name: 'version-test', version: '1.0.0' });
   try {
     await Promise.all([server.connect(serverTransport), peer.connect(clientTransport)]);
-    assert.deepEqual(peer.getServerVersion(), { name: 'sumo', version: '1.1.0' });
+    assert.deepEqual(peer.getServerVersion(), { name: 'sumo', version: VERSION });
   } finally {
     await peer.close();
     await server.close();
