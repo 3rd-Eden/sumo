@@ -1,7 +1,24 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 
-import { auditEntries, auditPackFiles } from './release-audit.mjs';
+import { auditEntries, auditPackFiles, readTextEntry } from './release-audit.mjs';
+
+test('readTextEntry skips directories and reads regular text files', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'sumo-release-audit-'));
+  const directory = path.join(root, 'directory');
+  const text = path.join(root, 'text.md');
+  fs.mkdirSync(directory);
+  fs.writeFileSync(text, 'public text');
+  try {
+    assert.deepEqual(readTextEntry('.codegraph', directory), []);
+    assert.deepEqual(readTextEntry('text.md', text), [{ path: 'text.md', content: 'public text' }]);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
 
 test('auditEntries rejects internal provenance and noncanonical project repositories', () => {
   const corporate = ['gd', 'corp'].join('');

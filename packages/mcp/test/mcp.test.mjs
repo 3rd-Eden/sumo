@@ -147,7 +147,7 @@ test('default server identity uses the package version', /** Verify the package 
   const peer = new Client({ name: 'version-test', version: '1.0.0' });
   try {
     await Promise.all([server.connect(serverTransport), peer.connect(clientTransport)]);
-assert.deepEqual(peer.getServerVersion(), { name: 'sumo', version: '1.1.0' });
+    assert.deepEqual(peer.getServerVersion(), { name: 'sumo', version: '1.1.0' });
   } finally {
     await peer.close();
     await server.close();

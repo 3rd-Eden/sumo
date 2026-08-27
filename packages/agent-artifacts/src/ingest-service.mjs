@@ -461,7 +461,7 @@ export function watcher({
     for (const t of idleTimers.values()) clearTimeout(t);
     idleTimers.clear();
     for (const handle of tailing.values()) {
-      try { handle.stop(); } catch { /* best-effort */ }
+      try { await handle.stop(); } catch { /* best-effort */ }
     }
     tailing.clear();
     await Promise.all(watchers.map((w) => w.close().catch(() => {})));

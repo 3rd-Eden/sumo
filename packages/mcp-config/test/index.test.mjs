@@ -1,6 +1,6 @@
 /** Tests the public MCP configuration reconciliation contract. */
 
-import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import assert from 'node:assert/strict';
@@ -44,6 +44,12 @@ test('refuses collisions and malformed configuration without overwriting either'
   writeFileSync(malformed, '{');
   assert.equal(reconcile({ path: malformed, root: 'mcpServers', server }).ok, false);
   assert.equal(readFileSync(malformed, 'utf8'), '{');
+
+  const unreadable = config('directory.json');
+  mkdirSync(unreadable);
+  const unreadableResult = inspect({ path: unreadable, root: 'mcpServers', server });
+  assert.equal(unreadableResult.code, 'SUMO_CONFIG_READ');
+  assert.match(unreadableResult.reason, /could not read .*directory/);
 });
 
 test('reconciles TOML MCP configuration through its declared root', /** Verifies Codex-style TOML support. */ () => {

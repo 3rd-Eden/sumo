@@ -1,6 +1,7 @@
 {
   "name": "sumo",
   "version": "1.1.0",
+  "packageManager": "pnpm@10.18.0",
   "description": "System for Unified Model Orchestration",
   "type": "module",
   "license": "MIT",
@@ -94,6 +95,9 @@
     "test:integrity": "node scripts/integrity.mjs",
     "test:jsdoc": "eslint . && node --test scripts/jsdoc-lint-config.test.mjs",
     "release:audit": "node scripts/release-audit.mjs",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "changeset publish",
     "prepublishOnly": "pnpm test && pnpm run release:audit",
     "journeys": "node journeys/melusine-cli.mjs test journeys/p3-opportunist.journey.md --catalog journeys/melusine.catalog.mjs",
     "types": "tsc -p tsconfig.json",
@@ -119,6 +123,7 @@
   "devDependencies": {
     "@ast-grep/cli": "^0.44.0",
     "@github/copilot-sdk": "1.0.4",
+    "@changesets/cli": "^2.29.7",
     "@types/lodash.defaultsdeep": "^4.6.9",
     "@types/node": "^22.0.0",
     "c8": "^11.0.0",

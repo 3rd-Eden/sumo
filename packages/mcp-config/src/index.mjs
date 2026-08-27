@@ -4,7 +4,8 @@
  * @module sumo/mcp-config
  */
 
-import { chmodSync, copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, statSync, writeFileSync } from 'node:fs';
+import { randomUUID } from 'node:crypto';
+import { chmodSync, copyFileSync, mkdirSync, readFileSync, renameSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, extname, join } from 'node:path';
 
 import TOML from '@iarna/toml';
@@ -90,14 +91,24 @@ export function reconcile({ backup = true, ...options }) {
  */
 function read(path) {
   const format = extname(path).toLowerCase() === '.toml' ? 'toml' : 'json';
-  if (!existsSync(path)) return { ok: true, exists: false, value: {}, format, mode: 0o600 };
+  let text;
   try {
-    const text = readFileSync(path, 'utf8');
-    const value = text.trim() ? format === 'toml' ? TOML.parse(text) : JSON.parse(text) : {};
-    if (!record(value)) return { ok: false, code: 'MCP_CONFIG_INVALID', reason: `${path} must contain an object` };
+    text = readFileSync(path, 'utf8');
+  } catch (error) {
+    if (error?.code === 'ENOENT') return { ok: true, exists: false, value: {}, format, mode: 0o600 };
+    return { ok: false, code: 'SUMO_CONFIG_READ', reason: `could not read ${path}: ${error?.message ?? error}` };
+  }
+  let value;
+  try {
+    value = text.trim() ? format === 'toml' ? TOML.parse(text) : JSON.parse(text) : {};
+  } catch (error) {
+    return { ok: false, code: 'SUMO_CONFIG_INVALID', reason: `${path} is not valid ${format.toUpperCase()}: ${error?.message ?? error}` };
+  }
+  if (!record(value)) return { ok: false, code: 'SUMO_CONFIG_INVALID', reason: `${path} must contain an object` };
+  try {
     return { ok: true, exists: true, value, format, mode: statSync(path).mode & 0o777 };
   } catch (error) {
-    return { ok: false, code: 'MCP_CONFIG_INVALID', reason: `${path} is not valid ${format.toUpperCase()}: ${error.message}` };
+    return { ok: false, code: 'SUMO_CONFIG_READ', reason: `could not read ${path}: ${error?.message ?? error}` };
   }
 }
 
@@ -111,7 +122,7 @@ function read(path) {
  */
 function getRoot(value, root) {
   if (value[root] === undefined) return { ok: true, value: {} };
-  if (!record(value[root])) return { ok: false, code: 'MCP_CONFIG_INVALID', reason: `${root} must be an object` };
+  if (!record(value[root])) return { ok: false, code: 'SUMO_CONFIG_INVALID', reason: `${root} must be an object` };
   return { ok: true, value: value[root] };
 }
 
@@ -151,7 +162,7 @@ function backupFile(path) {
  */
 function atomicWrite(path, text, mode) {
   mkdirSync(dirname(path), { recursive: true, mode: 0o700 });
-  const temporary = join(dirname(path), `.${Date.now()}.mcp-config.tmp`);
+  const temporary = join(dirname(path), `.${process.pid}-${randomUUID()}.mcp-config.tmp`);
   writeFileSync(temporary, text, { mode });
   chmodSync(temporary, mode);
   renameSync(temporary, path);
