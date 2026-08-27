@@ -60,9 +60,9 @@ to `SUMO_CAP_UNSUPPORTED` rather than being faked.
 | `CodexAppServer` | `server` | JSON-RPC 2.0 over stdio | `request` (id-correlated), `respondApproval` (server-initiated approvals) |
 | `CopilotServer` | `server` | `@github/copilot-sdk` over the npm-installed Copilot CLI | `request`, `respondApproval`, `.github/hooks/` file-hook loading |
 
-The Copilot SDK is an optional peer dependency so transcript, configuration, and
+The Copilot SDK is a development dependency so transcript, configuration, and
 other harness integrations do not install its platform-specific runtime. Install
-`@github/copilot-sdk@1.0.4` alongside Sumo before using the Copilot harness.
+`@github/copilot-sdk@1.0.4` explicitly before using the Copilot harness.
 
 > The server-kind transports here are **concrete siblings** (`CodexAppServer`, `CopilotServer`), not a
 > fake generic `Server`. Each one speaks its real protocol — Codex JSON-RPC, Copilot SDK/JSON-RPC —

@@ -127,13 +127,5 @@
     "memory-level": "^1.0.0",
     "melusine": "^0.1.0",
     "typescript": "^5.6.0"
-  },
-  "peerDependencies": {
-    "@github/copilot-sdk": "1.0.4"
-  },
-  "peerDependenciesMeta": {
-    "@github/copilot-sdk": {
-      "optional": true
-    }
   }
 }
