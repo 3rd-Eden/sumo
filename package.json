@@ -101,7 +101,6 @@
   },
   "dependencies": {
     "@iarna/toml": "^2.2.5",
-    "@github/copilot-sdk": "1.0.4",
     "@modelcontextprotocol/sdk": "^1.29.0",
     "abstract-level": "^1.0.4",
     "chokidar": "^5.0.0",
@@ -119,6 +118,7 @@
   },
   "devDependencies": {
     "@ast-grep/cli": "^0.44.0",
+    "@github/copilot-sdk": "1.0.4",
     "@types/lodash.defaultsdeep": "^4.6.9",
     "@types/node": "^22.0.0",
     "c8": "^11.0.0",
@@ -127,5 +127,13 @@
     "memory-level": "^1.0.0",
     "melusine": "^0.1.0",
     "typescript": "^5.6.0"
+  },
+  "peerDependencies": {
+    "@github/copilot-sdk": "1.0.4"
+  },
+  "peerDependenciesMeta": {
+    "@github/copilot-sdk": {
+      "optional": true
+    }
   }
 }
