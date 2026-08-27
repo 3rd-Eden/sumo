@@ -1,6 +1,6 @@
 {
   "name": "sumo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "System for Unified Model Orchestration",
   "type": "module",
   "license": "MIT",
@@ -58,6 +58,7 @@
     "./cli": "./packages/cli/src/index.mjs",
     "./config": "./packages/config/src/index.mjs",
     "./db": "./packages/db/src/index.mjs",
+    "./db/redaction": "./packages/db/src/redaction.mjs",
     "./db/dedupe": "./packages/db/src/dedupe.mjs",
     "./db/daemon": "./packages/db/src/daemon/host.mjs",
     "./error": "./packages/error/src/index.mjs",
@@ -69,6 +70,7 @@
     "./hooks": "./packages/hooks/src/index.mjs",
     "./log": "./packages/log/src/index.mjs",
     "./mcp": "./packages/mcp/src/index.mjs",
+    "./mcp-config": "./packages/mcp-config/src/index.mjs",
     "./messenger": "./packages/messenger/src/index.mjs",
     "./messenger/reference/http": "./packages/messenger/reference/http.mjs",
     "./orchestrator": "./packages/orchestrator/src/index.mjs",
