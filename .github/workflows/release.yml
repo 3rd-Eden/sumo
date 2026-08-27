@@ -29,6 +29,9 @@ jobs:
         with:
           node-version: 24.x
 
+      - name: Install npm Trusted Publishing support
+        run: npm install --global npm@11.5.1
+
       - name: Enable Corepack
         run: corepack enable
 
@@ -44,4 +47,4 @@ jobs:
           commit: Version Packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
+          NPM_CONFIG_PROVENANCE: "true"
