@@ -1,0 +1,1 @@
+{"type":"message.part.updated","properties":{"part":{"id":"prt_d3efc1240001ZizvxEdvSgeBI9","sessionID":"ses_2c103f93cffetFFPRRkGuRKM8E","messageID":"msg_d3efc06f2001vSfF552BjJDher","type":"tool","callID":"tooluse_93Ze5RvjbVKLod7KS9LM8O","tool":"bash","state":{"status":"pending","input":{},"raw":""}}}}

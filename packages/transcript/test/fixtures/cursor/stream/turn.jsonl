@@ -1,0 +1,4 @@
+{"type":"system","subtype":"init","apiKeySource":"login","cwd":"/tmp/sumo-capture","session_id":"dd3f4bde-441b-4e47-86a3-f76029e60c90","model":"Composer 2.5 Fast","permissionMode":"default"}
+{"type":"user","message":{"role":"user","content":[{"type":"text","text":"Reply with exactly: HELLO"}]},"session_id":"dd3f4bde-441b-4e47-86a3-f76029e60c90"}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"HELLO"}]},"session_id":"dd3f4bde-441b-4e47-86a3-f76029e60c90"}
+{"type":"result","subtype":"success","duration_ms":4852,"duration_api_ms":4852,"is_error":false,"result":"HELLO","session_id":"dd3f4bde-441b-4e47-86a3-f76029e60c90","request_id":"bfafb0e9-fe10-49fc-95e1-ea215e89788e","usage":{"inputTokens":48946,"outputTokens":29,"cacheReadTokens":5984,"cacheWriteTokens":0}}

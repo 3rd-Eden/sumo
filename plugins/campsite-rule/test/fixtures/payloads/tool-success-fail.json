@@ -1,0 +1,8 @@
+{
+  "tool_name": "Shell",
+  "tool_input": { "command": "bin/onboard test" },
+  "tool_output": "{\"exitCode\":1,\"stdout\":\"7 failed\"}",
+  "tool_use_id": "abc456",
+  "cwd": "/project",
+  "duration": 30000
+}

@@ -1,0 +1,26 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": false,
+    "emitDeclarationOnly": false,
+    "noEmit": true
+  },
+  "include": [
+    "src/**/*.mjs",
+    "packages/*/src/**/*.mjs",
+    "packages/*/reference/**/*.mjs",
+    "plugins/**/*.mjs",
+    "scripts/**/*.mjs",
+    "journeys/**/*.mjs"
+  ],
+  "exclude": [
+    "**/node_modules/**",
+    "**/coverage/**",
+    "**/types/**",
+    "**/fixtures/**",
+    "**/test/**",
+    "**/*.test.mjs",
+    "**/*.serial.mjs",
+    "spike/**"
+  ]
+}

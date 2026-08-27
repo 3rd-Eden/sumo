@@ -1,0 +1,39 @@
+{
+  "name": "campsite-rule",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./bin": "./bin/hook.js"
+  },
+  "imports": {
+    "#src/*": "./src/*.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "description": "Campsite-rule enforcement engine — finding identity, false-positive filtering, resolution proofs, and stop-gating evaluation for AI coding agent sessions.",
+  "scripts": {
+    "test": "vitest run test --coverage --coverage.thresholds.lines=90 --coverage.thresholds.branches=90 --coverage.thresholds.functions=90 --coverage.thresholds.statements=90"
+  },
+  "keywords": [
+    "campsite-rule",
+    "ai-agent",
+    "code-quality",
+    "dismissive-language",
+    "enforcement",
+    "cursor",
+    "claude-code",
+    "hooks"
+  ],
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.10",
+    "vitest": "^4.1.5"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/3rd-Eden/sumo",
+    "directory": "plugins/campsite-rule"
+  }
+}

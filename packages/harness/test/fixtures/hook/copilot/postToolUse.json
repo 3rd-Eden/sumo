@@ -1,0 +1,11 @@
+{
+  "sessionId": "copilot-native-session",
+  "timestamp": 1782831468042,
+  "cwd": "/tmp/sumo-copilot-hooks",
+  "toolName": "bash",
+  "toolArgs": "{\"command\":\"printf copilot-hook-fixture > /tmp/sumo-copilot-hooks/tool.txt\",\"description\":\"Write copilot-hook-fixture to tool.txt\"}",
+  "toolResult": {
+    "resultType": "success",
+    "textResultForLlm": "\n<shellId: 0 completed with exit code 0>"
+  }
+}

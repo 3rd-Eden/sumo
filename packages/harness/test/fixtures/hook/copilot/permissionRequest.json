@@ -1,0 +1,11 @@
+{
+  "hookName": "permissionRequest",
+  "sessionId": "copilot-native-session",
+  "timestamp": 1782846661884,
+  "cwd": "/tmp/sumo-copilot-hooks",
+  "toolName": "bash",
+  "toolInput": {
+    "command": "printf copilot-hook-fixture > /tmp/sumo-copilot-hooks/tool.txt"
+  },
+  "permissionSuggestions": []
+}

@@ -1,0 +1,15 @@
+{
+  "conversation_id": "30121b4f-764e-47be-9867-c4e1b2af795a",
+  "generation_id": "30121b4f-764e-47be-9867-c4e1b2af795a",
+  "model": "default",
+  "command": "pwd",
+  "output": "",
+  "duration": 1.753,
+  "sandbox": false,
+  "hook_event_name": "afterShellExecution",
+  "cursor_version": "2026.03.25-933d5a6",
+  "workspace_roots": [
+    "/private/tmp/example-live-cursor"
+  ],
+  "transcript_path": "$HOME/.cursor/projects/private-tmp-example-live-cursor/agent-transcripts/30121b4f-764e-47be-9867-c4e1b2af795a/30121b4f-764e-47be-9867-c4e1b2af795a.jsonl"
+}

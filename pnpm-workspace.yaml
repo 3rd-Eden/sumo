@@ -1,0 +1,6 @@
+packages:
+  - 'packages/*'
+  - 'plugins/*'
+allowBuilds:
+  '@ast-grep/cli': true
+  classic-level: false

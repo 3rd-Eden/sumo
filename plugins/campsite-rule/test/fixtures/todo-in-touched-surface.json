@@ -1,0 +1,36 @@
+{
+  "id": "todo-in-touched-surface",
+  "title": "TODO or FIXME in touched surface cannot be ignored",
+  "issueType": "local",
+  "owner": "maintaining-standards",
+  "summary": "The agent encounters a TODO, FIXME, or HACK in the exact file, doc section, or workflow surface already being edited.",
+  "currentFailure": "The agent treats the marker as historical context only and moves on without fixing it, or tries to close the bug with another TODO instead of real work.",
+  "surfaceChecks": [
+    {
+      "path": ".agents/skills/campsite-rule/SKILL.md",
+      "description": "TODO and FIXME markers in touched surfaces trigger real closure work, not more TODOs.",
+      "patterns": [
+        "You see a `TODO`, `FIXME`, or `HACK`",
+        "A TODO comment is not bug closure"
+      ]
+    },
+    {
+      "path": ".cursor/rules/skill-routing.mdc",
+      "description": "Always-on routing explicitly mentions TODO and FIXME discoveries.",
+      "patterns": ["TODO/FIXME", "campsite-rule"]
+    }
+  ],
+  "rubric": {
+    "mustMention": ["fix", "todo"],
+    "mustNotMention": [
+      "historical context only",
+      "not my task",
+      "durable trace"
+    ],
+    "requireAction": ["fix", "ask", "document"]
+  },
+  "samples": {
+    "noncompliant": "I saw the FIXME, but it looks like historical context only and not my task, so I left it as-is.",
+    "compliant": "The FIXME is in the exact surface I am touching, so I need to fix it now. If the fix turns out to be unsafe, I need to stop and ask instead of treating the TODO as closure."
+  }
+}

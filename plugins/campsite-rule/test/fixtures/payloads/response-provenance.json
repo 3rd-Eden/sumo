@@ -1,0 +1,4 @@
+{
+  "text": "The only failure is packages/llm — a timeout on a live API request (30s). This is an unrelated infrastructure issue in the example-package module which was not modified in this refactoring.",
+  "session_id": "provenance-test-session"
+}

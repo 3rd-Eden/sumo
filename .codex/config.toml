@@ -1,0 +1,13 @@
+# sumo-managed:mcp
+[mcp_servers.sumo]
+command = "sumo"
+args = ["mcp"]
+
+[mcp_servers.sumo.env]
+SUMO_MANAGED = "sumo-managed:mcp"
+
+[mcp_servers.sumo.tools.sessions]
+approval_mode = "approve"
+
+[mcp_servers.sumo.tools.roundtable-room]
+approval_mode = "approve"

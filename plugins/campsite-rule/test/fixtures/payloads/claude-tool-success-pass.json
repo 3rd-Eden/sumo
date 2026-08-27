@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input": { "command": "bin/onboard test" },
+  "tool_response": "{\"exitCode\":0,\"stdout\":\"All tests passed\"}",
+  "tool_use_id": "claude-abc123",
+  "cwd": "/project"
+}

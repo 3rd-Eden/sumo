@@ -1,0 +1,13 @@
+{
+  "session_id": "90b87a52-aa09-4d67-a3fb-2ce672015e9c",
+  "transcript_path": "$HOME/.claude/projects/-Volumes-ExampleVolume-example-project/90b87a52-aa09-4d67-a3fb-2ce672015e9c.jsonl",
+  "cwd": "/Volumes/ExampleVolume/example-project",
+  "permission_mode": "default",
+  "hook_event_name": "PreToolUse",
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "pwd",
+    "description": "Print current working directory"
+  },
+  "tool_use_id": "toolu_bdrk_01Ds3F3d6E6Cai4Jpk7ZjbVn"
+}

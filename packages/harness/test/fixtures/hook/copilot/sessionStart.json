@@ -1,0 +1,7 @@
+{
+  "sessionId": "copilot-native-session",
+  "timestamp": 1782831464437,
+  "cwd": "/tmp/sumo-copilot-hooks",
+  "source": "new",
+  "initialPrompt": "Use the bash tool to run exactly: printf copilot-hook-fixture > /tmp/sumo-copilot-hooks/tool.txt"
+}

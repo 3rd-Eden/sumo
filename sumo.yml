@@ -1,0 +1,10 @@
+root: true
+use:
+  - sumo/plugins/roundtable
+harness:
+  default: codex
+  fallback:
+    - codex
+    - claude-code
+    - cursor
+    - copilot

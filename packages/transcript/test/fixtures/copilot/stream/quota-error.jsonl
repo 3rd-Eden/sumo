@@ -1,0 +1,1 @@
+{"type":"session.error","data":{"errorType":"quota","errorCode":"quota_exceeded","message":"You have exceeded your monthly quota (Request ID: [REDACTED])","statusCode":402,"providerCallId":"[REDACTED]","serviceRequestId":"[REDACTED]"},"id":"6d915864-385c-416d-83ac-95a9281017e0","timestamp":"2026-06-29T21:14:30.951Z","parentId":"8180accf-d9eb-4d37-967e-f4f4e80061e4"}

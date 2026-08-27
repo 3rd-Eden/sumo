@@ -1,0 +1,17 @@
+# Conformance fixture: drives the GitHub messenger's config through real `sumo/config` loading
+# (resolveConfig discovers this sumo.yml). `root: true` stops the discovery walk here so the suite is
+# isolated from any ambient sumo.yml. The live suite replaces the placeholder from
+# SUMO_GITHUB_TEST_REPO.
+root: true
+use:
+  - sumo/plugins/github
+plugins:
+  github:
+    repo: owner/repo
+    label: sumo:ready
+    claimLabel: sumo:claimed
+    # short settle keeps the suite fast while still letting GitHub's comment list converge before the
+    # deciding read; tiny TTL exercises reclaim-on-expiry without a 5-minute wait.
+    settleMs: 2500
+    claimTtlMs: 4000
+    heartbeatMs: 1000

@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "sumo forward cursor sessionStart # sumo-managed:cursor"
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": "sumo forward cursor beforeShellExecution # sumo-managed:cursor"
+      }
+    ],
+    "afterShellExecution": [
+      {
+        "command": "sumo forward cursor afterShellExecution # sumo-managed:cursor"
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": "sumo forward cursor afterFileEdit # sumo-managed:cursor"
+      }
+    ]
+  }
+}

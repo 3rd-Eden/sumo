@@ -1,0 +1,7 @@
+{
+  "sessionId": "copilot-native-session",
+  "timestamp": 1782831467961,
+  "cwd": "/tmp/sumo-copilot-hooks",
+  "toolName": "bash",
+  "toolArgs": "{\"command\":\"printf copilot-hook-fixture > /tmp/sumo-copilot-hooks/tool.txt\",\"description\":\"Write copilot-hook-fixture to tool.txt\"}"
+}

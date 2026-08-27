@@ -1,0 +1,7 @@
+{
+  "timestamp": 1782831471416,
+  "cwd": "/tmp/sumo-copilot-hooks",
+  "sessionId": "copilot-native-session",
+  "transcriptPath": "/tmp/sumo-copilot-hooks/events.jsonl",
+  "stopReason": "end_turn"
+}

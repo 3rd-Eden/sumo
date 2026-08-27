@@ -1,0 +1,10 @@
+{
+  "session_id": "019f15d8-d288-7db3-834b-950efb8344ce",
+  "turn_id": "019f15d8-d30c-7da3-98cf-14523c6d40ff",
+  "transcript_path": "$HOME/.codex/sessions/2026/06/30/rollout-2026-06-30T02-05-59-019f15d8-d288-7db3-834b-950efb8344ce.jsonl",
+  "cwd": "/private/tmp/sumo-codex-hook-probe",
+  "hook_event_name": "UserPromptSubmit",
+  "model": "gpt-5.5",
+  "permission_mode": "bypassPermissions",
+  "prompt": "Use the shell to run exactly: printf SUMO_CODEX_HOOK_LIVE. Report the exact stdout. Do not answer without running the shell command."
+}

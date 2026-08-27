@@ -1,0 +1,9 @@
+{
+  "session_id": "019f15d8-d288-7db3-834b-950efb8344ce",
+  "transcript_path": "$HOME/.codex/sessions/2026/06/30/rollout-2026-06-30T02-05-59-019f15d8-d288-7db3-834b-950efb8344ce.jsonl",
+  "cwd": "/private/tmp/sumo-codex-hook-probe",
+  "hook_event_name": "SessionStart",
+  "model": "gpt-5.5",
+  "permission_mode": "bypassPermissions",
+  "source": "startup"
+}

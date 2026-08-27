@@ -1,0 +1,22 @@
+{
+  "apiBaseUrl": "https://example.invalid/api",
+  "apiKeyHelper": "/opt/local/bin/key-helper api-key-helper",
+  "enabledPlugins": {
+    "chrome-devtools-mcp@chrome-devtools-plugins": true
+  },
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://example.invalid/api/",
+    "ANTHROPIC_MODEL": "claude-opus-4-8",
+    "ANTHROPIC_AUTH_TOKEN": "sk-ant-PLANTED0FAKE0TOKEN0FOR0REDACTION0TEST000",
+    "DB_PASSWORD": "PLANTEDopaquevalue999notatokenshape",
+    "ENABLE_TOOL_SEARCH": "true"
+  },
+  "model": "opus[1m]",
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "statusLine": {
+    "command": "bash \"/home/u/.claude/statusline-command.sh\"",
+    "type": "command"
+  }
+}

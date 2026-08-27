@@ -1,0 +1,9 @@
+{
+  "session_id": "e7e5d1ef-c944-4515-91c6-d54bc7e613db",
+  "transcript_path": "$HOME/.claude/projects/-Volumes-ExampleVolume-example-project/e7e5d1ef-c944-4515-91c6-d54bc7e613db.jsonl",
+  "cwd": "/Volumes/ExampleVolume/example-project",
+  "permission_mode": "default",
+  "hook_event_name": "Stop",
+  "stop_hook_active": false,
+  "last_assistant_message": "Done — file written to `/tmp/example-permission-test.txt`."
+}

@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "node .agents/skills/campsite-rule/bin/hook.js --host cursor --repo . session-start"
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "type": "prompt",
+        "prompt": "This command runs tests via pnpm/npm directly. Deny it and tell the agent to use `bin/onboard test` (or `bin/onboard run \"pnpm --filter '...' test\"` for a single package) instead — it sets up the required test environment. Do NOT modify .cursor/hooks.json to work around this.",
+        "matcher": "(?:^|&&\\s*|;\\s*)\\s*(pnpm|npm)\\s+((-\\w+|--[\\w-]+)(\\s+\\S+|=\\S+)?\\s+)*(run\\s+|exec\\s+|dlx\\s+)?(test|vitest)\\b"
+      },
+      {
+        "type": "prompt",
+        "prompt": "This command runs tests via node's built-in test runner. Deny it and tell the agent to use `bin/onboard test` instead — it sets up the required test environment. Do NOT modify .cursor/hooks.json to work around this.",
+        "matcher": "\\bnode\\s+--test"
+      },
+      {
+        "type": "prompt",
+        "prompt": "This command runs vitest directly. Deny it and tell the agent to use `bin/onboard test` instead — it sets up the required test environment. Do NOT modify .cursor/hooks.json to work around this.",
+        "matcher": "(?<![\"'])(npx|pnpx)\\s+vitest"
+      },
+      {
+        "type": "prompt",
+        "prompt": "This command invokes the vitest binary directly, bypassing bin/onboard. Deny it and tell the agent to use `bin/onboard test` (or `bin/onboard run \"pnpm run test:skills\"` for non-package tests) instead — it sets up the required test environment. Do NOT modify .cursor/hooks.json to work around this.",
+        "matcher": "node_modules/\\.bin/vitest\\b"
+      },
+      {
+        "type": "prompt",
+        "prompt": "This command imports campsite-rule internals directly, bypassing the hook pipeline. Deny it. Read .agents/skills/campsite-rule/SKILL.md and follow the resolve workflow. Resolve findings via: echo '{...}' | node .agents/skills/campsite-rule/bin/hook.js --repo . resolve. Do NOT modify .cursor/hooks.json to work around this.",
+        "matcher": "node\\s+.*(-e|--eval|--input-type)\\b.*campsite-rule"
+      },
+      {
+        "type": "prompt",
+        "prompt": "This command imports campsite-rule internals directly, bypassing the hook pipeline. Deny it. Read .agents/skills/campsite-rule/SKILL.md and follow the resolve workflow. Do NOT modify .cursor/hooks.json to work around this.",
+        "matcher": "node\\s+.*campsite-rule.*(-e|--eval|--input-type)\\b"
+      },
+      {
+        "type": "prompt",
+        "prompt": "This command accesses the campsite resolution ledger directly, bypassing the hook pipeline. Deny it. The ledger is managed by the campsite-rule engine through bin/hook.js. Do NOT modify .cursor/hooks.json to work around this.",
+        "matcher": "(cat|head|tail|less|more|jq|python|node)\\b.*\\.local/share/campsite"
+      },
+      {
+        "type": "prompt",
+        "prompt": "This command imports campsite-rule internal source files directly. Deny it. Read .agents/skills/campsite-rule/SKILL.md and follow the resolve workflow. Do NOT modify .cursor/hooks.json to work around this.",
+        "matcher": "import\\s.*campsite-rule/src"
+      }
+    ],
+    "postToolUse": [
+      {
+        "command": "node .agents/skills/campsite-rule/bin/hook.js --host cursor --repo . tool-success",
+        "matcher": "Shell"
+      }
+    ],
+    "postToolUseFailure": [
+      {
+        "command": "node .agents/skills/campsite-rule/bin/hook.js --host cursor --repo . tool-failure",
+        "matcher": "Shell"
+      }
+    ],
+    "afterAgentResponse": [
+      {
+        "command": "node .agents/skills/campsite-rule/bin/hook.js --host cursor --repo . agent-response"
+      }
+    ],
+    "stop": [
+      {
+        "command": "node .agents/skills/campsite-rule/bin/hook.js --host cursor --repo . stop",
+        "loop_limit": 1
+      }
+    ]
+  }
+}

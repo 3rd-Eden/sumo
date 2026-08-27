@@ -1,0 +1,15 @@
+{
+  "session_id": "019d3ec7-f08e-72f2-b468-7537c9851a90",
+  "turn_id": "019d3ec7-f098-7f21-ae75-4229a73fe5b1",
+  "transcript_path": "$HOME/.codex/sessions/2026/03/30/rollout-2026-03-30T14-46-23-019d3ec7-f08e-72f2-b468-7537c9851a90.jsonl",
+  "cwd": "/private/tmp/example-live-codex-117",
+  "hook_event_name": "PostToolUse",
+  "model": "gpt-5.4",
+  "permission_mode": "bypassPermissions",
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "pwd"
+  },
+  "tool_response": "/private/tmp/example-live-codex-117\n",
+  "tool_use_id": "call_DvWyIzigcvRcQKZ3ClqLtMC3"
+}

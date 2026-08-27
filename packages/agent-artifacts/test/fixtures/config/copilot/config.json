@@ -1,0 +1,5 @@
+{
+  "model": "gpt-5.4",
+  "apiKey": "PLANTED_TOKEN_SECRET",
+  "DB_PASSWORD": "PLANTED_OPAQUE_SECRET"
+}

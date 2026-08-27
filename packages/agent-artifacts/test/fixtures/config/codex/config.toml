@@ -1,0 +1,16 @@
+model = "gpt-5-codex"
+model_reasoning_effort = "high"
+model_provider = "example_http"
+
+[model_providers.example_http]
+name = "example"
+wire_api = "responses"
+requires_openai_auth = true
+base_url = "https://example.invalid/v1"
+api_key = "sk-PLANTED0FAKE0CODEX0TOKEN0FOR0REDACTION0TEST"
+
+[projects."/home/u/work/project-a"]
+trust_level = "trusted"
+
+[projects."/home/u/work/project-b"]
+trust_level = "trusted"

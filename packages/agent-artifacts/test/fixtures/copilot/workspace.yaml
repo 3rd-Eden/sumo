@@ -1,0 +1,12 @@
+id: 67716e83-201a-485f-9f26-9ebb1d6c1551
+cwd: /tmp/sumo-capture
+git_root: /tmp/sumo-capture
+repository: example/sumo
+host_type: github
+branch: main
+client_name: github/cli
+name: auth status
+user_named: false
+summary_count: 0
+created_at: 2026-06-29T18:24:45.083Z
+updated_at: 2026-06-29T18:24:47.370Z

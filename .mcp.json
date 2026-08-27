@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "sumo": {
+      "command": "sumo",
+      "args": [
+        "mcp"
+      ],
+      "env": {
+        "SUMO_MANAGED": "sumo-managed:mcp"
+      }
+    }
+  }
+}

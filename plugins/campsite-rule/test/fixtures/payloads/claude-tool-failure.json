@@ -1,0 +1,6 @@
+{
+  "tool_name": "Bash",
+  "tool_input": { "command": "bin/onboard test" },
+  "error": "command timed out after 60000ms",
+  "tool_use_id": "claude-def789"
+}

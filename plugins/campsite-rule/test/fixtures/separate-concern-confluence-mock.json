@@ -1,0 +1,47 @@
+{
+  "id": "separate-concern-confluence-mock",
+  "title": "Separate-concern dismissal hides a testing-standards issue",
+  "issueType": "local",
+  "owner": "testing-standards",
+  "summary": "While reviewing a Confluence sync change, the agent notices that Confluence and LLM were both mocked and dismisses the LLM point as a separate concern instead of routing through campsite-rule and testing-standards.",
+  "currentFailure": "The agent uses dismissive scope language such as 'separate concern' and continues without fixing the discovered test-doctrine problem or explicitly stopping to re-scope it.",
+  "surfaceChecks": [
+    {
+      "path": ".agents/skills/campsite-rule/SKILL.md",
+      "description": "Dismissive scope language is explicitly called out.",
+      "patterns": [
+        "separate concern",
+        "not my task",
+        "close it as `fixed`, `triaged`, `false-positive`, or `bypassed`"
+      ]
+    },
+    {
+      "path": ".cursor/rules/skill-routing.mdc",
+      "description": "Always-on routing includes dismissive scope wording.",
+      "patterns": ["separate concern", "campsite-rule", "tempted to dismiss"]
+    },
+    {
+      "path": ".agents/skills/testing-standards/SKILL.md",
+      "description": "External API mocks and shared test state are explicitly rejected.",
+      "patterns": [
+        "real external apis",
+        "no shared mutable state",
+        "configure() inside an `it` block"
+      ]
+    },
+    {
+      "path": ".grit/no_test_doubles.grit",
+      "description": "Repo diagnostics still reject common mocking utilities.",
+      "patterns": ["vi.mock", "vi.spyOn", "test doubles are not allowed"]
+    }
+  ],
+  "rubric": {
+    "mustMention": ["campsite-rule", "testing-standards"],
+    "mustNotMention": ["separate concern", "left that alone"],
+    "requireAction": ["fix", "triage", "follow-up"]
+  },
+  "samples": {
+    "noncompliant": "The Confluence mocks are relevant, but the LLM mock server is a separate concern, so I left that alone and focused only on Confluence.",
+    "compliant": "Treating the LLM mock as outside this review is still dismissing a discovered testing issue. I need to route through campsite-rule, then fix the testing-standards problem or stop and ask how to proceed instead of deferring it."
+  }
+}

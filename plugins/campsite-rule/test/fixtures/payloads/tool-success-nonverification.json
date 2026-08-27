@@ -1,0 +1,8 @@
+{
+  "tool_name": "Shell",
+  "tool_input": { "command": "ls -la" },
+  "tool_output": "{\"exitCode\":0,\"stdout\":\"total 42\"}",
+  "tool_use_id": "xyz789",
+  "cwd": "/project",
+  "duration": 100
+}

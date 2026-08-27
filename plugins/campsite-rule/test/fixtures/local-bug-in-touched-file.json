@@ -1,0 +1,32 @@
+{
+  "id": "local-bug-in-touched-file",
+  "title": "Nearby bug in touched file is fixed now",
+  "issueType": "local",
+  "owner": "testing-standards",
+  "summary": "While editing a file for one request, the agent notices a real nearby defect in the exact surface already being touched.",
+  "currentFailure": "The agent calls the nearby defect scope creep, leaves it behind, and promises to mention it later instead of fixing or testing it.",
+  "surfaceChecks": [
+    {
+      "path": ".agents/skills/campsite-rule/SKILL.md",
+      "description": "Local safe issues are fixed immediately.",
+      "patterns": [
+        "It is local to the exact surface you are touching",
+        "Calling a nearby safe fix \"scope creep\""
+      ]
+    },
+    {
+      "path": ".cursor/rules/skill-routing.mdc",
+      "description": "Always-on routing reminds the agent that touched-surface defects trigger campsite triage.",
+      "patterns": ["TODO", "FIXME", "campsite-rule"]
+    }
+  ],
+  "rubric": {
+    "mustMention": ["fix it now", "regression test"],
+    "mustNotMention": ["scope creep", "i will mention it later"],
+    "requireAction": ["fix", "test"]
+  },
+  "samples": {
+    "noncompliant": "There is a nearby bug in the file, but fixing it would be scope creep. I will mention it later in my final response.",
+    "compliant": "This defect is in the exact file I am already touching, so the campsite rule says to fix it now. I will land the local fix and add a regression test before I call the task complete."
+  }
+}

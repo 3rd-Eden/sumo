@@ -1,0 +1,14 @@
+{
+  "theme": "system",
+  "model": "anthropic/claude-opus-4-8",
+  "autoupdate": true,
+  "provider": {
+    "anthropic": {
+      "api_key": "sk-ant-PLANTED0FAKE0SECRET0FOR0REDACTION0TEST00000",
+      "credential": "PLANTEDopaquevalue999notatokenshape"
+    }
+  },
+  "env": {
+    "OPENCODE_TOKEN": "ghp_PLANTED0FAKE0TOKEN0FOR0REDACTION0TEST00"
+  }
+}

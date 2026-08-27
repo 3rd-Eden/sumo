@@ -1,0 +1,45 @@
+{
+  "id": "todo-instead-of-fixing",
+  "title": "Agent writes a TODO comment instead of diagnosing and fixing a discoverable issue",
+  "issueType": "local",
+  "owner": "campsite-rule",
+  "summary": "The agent encounters a fixable defect or inconsistency in a touched surface and drops a TODO comment instead of investigating the root cause and landing the fix.",
+  "currentFailure": "The agent treats a TODO comment as bug closure, skipping diagnosis and skipping the actual fix. The TODO records the problem, but it does not remove it.",
+  "surfaceChecks": [
+    {
+      "path": ".agents/skills/campsite-rule/SKILL.md",
+      "description": "The skill rejects TODOs as closure for discovered bugs.",
+      "patterns": [
+        "TODO comments, issue links, and doc notes may accompany the record",
+        "Treating a TODO, issue, or plan as closure for a discovered bug",
+        "A TODO comment is not bug closure"
+      ]
+    },
+    {
+      "path": ".agents/skills/campsite-rule/SKILL.md",
+      "description": "The rationalization table explicitly rejects TODO-as-closure framing.",
+      "patterns": [
+        "I will just add a TODO",
+        "A TODO comment is not bug closure"
+      ]
+    },
+    {
+      "path": ".cursor/rules/skill-routing.mdc",
+      "description": "Always-on routing sends TODO/FIXME discoveries through campsite triage.",
+      "patterns": ["TODO/FIXME", "campsite-rule"]
+    }
+  ],
+  "rubric": {
+    "mustMention": ["diagnos", "fix", "campsite"],
+    "mustNotMention": [
+      "just add a todo",
+      "leaving a todo for now",
+      "todo should be enough"
+    ],
+    "requireAction": ["fix", "investigat", "regression test"]
+  },
+  "samples": {
+    "noncompliant": "I noticed a bug in the error handling path while editing this file. I'm just adding a TODO for now so someone can look at it later. Leaving a TODO for now should be enough since the main task is done.",
+    "compliant": "I discovered a bug in the error handling path in the file I am already editing. Per campsite-rule, this is a local issue in my touched surface, so I need to diagnose the root cause and fix it now. I will investigate the defect, land the fix, and add a regression test to prevent recurrence."
+  }
+}

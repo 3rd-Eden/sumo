@@ -1,0 +1,2 @@
+{"type":"user","message":{"role":"user","content":"Add a new utility function"}}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"thinking","thinking":"I need to create a helper function that validates the input format."},{"type":"text","text":"I've added the utility function with full test coverage."}]}}

@@ -1,0 +1,129 @@
+{
+  "name": "sumo",
+  "version": "1.0.0",
+  "description": "System for Unified Model Orchestration",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3rd-Eden/sumo.git"
+  },
+  "homepage": "https://github.com/3rd-Eden/sumo#readme",
+  "bugs": {
+    "url": "https://github.com/3rd-Eden/sumo/issues"
+  },
+  "keywords": [
+    "ai-agents",
+    "orchestration",
+    "mcp",
+    "automation",
+    "agent-harness"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src/index.mjs",
+    "src/version.mjs",
+    "packages/*/src/**/*.mjs",
+    "packages/messenger/reference/",
+    "packages/mcp/instructions.md",
+    "plugins/github/_marker.mjs",
+    "plugins/github/github.mjs",
+    "plugins/github/index.mjs",
+    "plugins/opportunist/*.mjs",
+    "plugins/opportunist/prompts/",
+    "plugins/roundtable/*.mjs",
+    "plugins/roundtable/skills/",
+    "plugins/campsite-rule/package.json",
+    "plugins/campsite-rule/src/",
+    "plugins/campsite-rule/bin/",
+    "plugins/campsite-rule/SKILL.md",
+    "plugins/campsite-rule/hooks.json",
+    "plugins/campsite-rule/references/",
+    "skills/sumo/",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "bin": {
+    "sumo": "./packages/cli/src/cli.mjs"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./agent-artifacts": "./packages/agent-artifacts/src/index.mjs",
+    "./capability": "./packages/capability/src/index.mjs",
+    "./cli": "./packages/cli/src/index.mjs",
+    "./config": "./packages/config/src/index.mjs",
+    "./db": "./packages/db/src/index.mjs",
+    "./db/dedupe": "./packages/db/src/dedupe.mjs",
+    "./db/daemon": "./packages/db/src/daemon/host.mjs",
+    "./error": "./packages/error/src/index.mjs",
+    "./harness": "./packages/harness/src/index.mjs",
+    "./harness/capabilities": "./packages/harness/src/capabilities.mjs",
+    "./harness/classify": "./packages/harness/src/base/classify.mjs",
+    "./harness/probe": "./packages/harness/src/base/probe.mjs",
+    "./harness/transport": "./packages/harness/src/transport/index.mjs",
+    "./hooks": "./packages/hooks/src/index.mjs",
+    "./log": "./packages/log/src/index.mjs",
+    "./mcp": "./packages/mcp/src/index.mjs",
+    "./messenger": "./packages/messenger/src/index.mjs",
+    "./messenger/reference/http": "./packages/messenger/reference/http.mjs",
+    "./orchestrator": "./packages/orchestrator/src/index.mjs",
+    "./plugin": "./packages/plugin/src/index.mjs",
+    "./session": "./packages/session/src/index.mjs",
+    "./transcript": "./packages/transcript/src/index.mjs",
+    "./util": "./packages/util/src/index.mjs",
+    "./util/testing": "./packages/util/src/testing.mjs",
+    "./work": "./packages/work/src/index.mjs",
+    "./plugins/github": "./plugins/github/index.mjs",
+    "./plugins/opportunist": "./plugins/opportunist/index.mjs",
+    "./plugins/roundtable": "./plugins/roundtable/index.mjs",
+    "./plugins/campsite-rule": "./plugins/campsite-rule/src/public.js",
+    "./plugins/campsite-rule/bin": "./plugins/campsite-rule/bin/hook.js"
+  },
+  "scripts": {
+    "test": "pnpm run test:integrity && pnpm run test:jsdoc && pnpm run typecheck && pnpm run test:unit",
+    "test:unit": "node --test 'journeys/*.test.mjs' 'packages/**/*.test.mjs' 'plugins/**/*.test.mjs' 'scripts/*.test.mjs' 'spike/*.test.mjs' 'src/*.test.mjs' && node --test packages/agent-artifacts/ingest-service.serial.mjs && pnpm run test:campsite",
+    "test:campsite": "corepack pnpm --dir plugins/campsite-rule test",
+    "test:coverage": "c8 --all --check-coverage --lines 90 --branches 90 --functions 90 --include 'src/**/*.mjs' --include 'packages/*/src/**/*.mjs' --include 'plugins/**/*.mjs' --exclude '**/test/**' --exclude '**/*.test.mjs' --exclude '**/*.serial.mjs' pnpm run test:unit",
+    "test:integrity": "node scripts/integrity.mjs",
+    "test:jsdoc": "eslint . && node --test scripts/jsdoc-lint-config.test.mjs",
+    "release:audit": "node scripts/release-audit.mjs",
+    "prepublishOnly": "pnpm test && pnpm run release:audit",
+    "journeys": "node journeys/melusine-cli.mjs test journeys/p3-opportunist.journey.md --catalog journeys/melusine.catalog.mjs",
+    "types": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.check.json"
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "@github/copilot-sdk": "1.0.4",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "abstract-level": "^1.0.4",
+    "chokidar": "^5.0.0",
+    "classic-level": "^1.4.1",
+    "commander": "^15.0.0",
+    "lodash.defaultsdeep": "^4.6.1",
+    "many-level": "^2.0.0",
+    "minisearch": "^7.2.0",
+    "safe-stable-stringify": "^2.5.0",
+    "ulidx": "^2.4.1",
+    "winston": "^3.19.0",
+    "winston-daily-rotate-file": "^5.0.0",
+    "yaml": "^2.5.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@ast-grep/cli": "^0.44.0",
+    "@types/lodash.defaultsdeep": "^4.6.9",
+    "@types/node": "^22.0.0",
+    "c8": "^11.0.0",
+    "eslint": "10.6.0",
+    "eslint-plugin-jsdoc": "63.0.10",
+    "memory-level": "^1.0.0",
+    "melusine": "^0.1.0",
+    "typescript": "^5.6.0"
+  }
+}

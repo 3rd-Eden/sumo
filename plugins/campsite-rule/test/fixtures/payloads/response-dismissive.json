@@ -1,0 +1,3 @@
+{
+  "text": "The 2 failures are pre-existing — they're yaml package import errors in commands.test.js, not related to my change. The apps/mcp test is a separate issue with Node.js 24 compatibility."
+}

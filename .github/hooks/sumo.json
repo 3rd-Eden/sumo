@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot sessionStart # sumo-managed:copilot"
+      }
+    ],
+    "sessionEnd": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot sessionEnd # sumo-managed:copilot"
+      }
+    ],
+    "userPromptSubmitted": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot userPromptSubmitted # sumo-managed:copilot"
+      }
+    ],
+    "preToolUse": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot preToolUse # sumo-managed:copilot"
+      }
+    ],
+    "permissionRequest": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot permissionRequest # sumo-managed:copilot"
+      }
+    ],
+    "postToolUse": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot postToolUse # sumo-managed:copilot"
+      }
+    ],
+    "postToolUseFailure": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot postToolUseFailure # sumo-managed:copilot"
+      }
+    ],
+    "agentStop": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot agentStop # sumo-managed:copilot"
+      }
+    ],
+    "subagentStart": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot subagentStart # sumo-managed:copilot"
+      }
+    ],
+    "subagentStop": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot subagentStop # sumo-managed:copilot"
+      }
+    ],
+    "errorOccurred": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot errorOccurred # sumo-managed:copilot"
+      }
+    ],
+    "preCompact": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot preCompact # sumo-managed:copilot"
+      }
+    ],
+    "notification": [
+      {
+        "type": "command",
+        "command": "sumo forward copilot notification # sumo-managed:copilot"
+      }
+    ]
+  }
+}

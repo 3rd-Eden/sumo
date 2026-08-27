@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": ["Shell(ls)"],
+    "deny": []
+  },
+  "version": 1,
+  "editor": {
+    "vimMode": true
+  },
+  "model": {
+    "modelId": "composer-2.5",
+    "displayName": "Composer 2.5 Fast"
+  },
+  "privacyCache": {
+    "ghostMode": true,
+    "privacyMode": 1
+  },
+  "authInfo": {
+    "email": "dev@example.invalid",
+    "displayName": "Test User",
+    "teamId": 0,
+    "userId": 0,
+    "authId": "auth0|user_TESTTESTTESTTESTTESTTEST",
+    "accessToken": "ghp_PLANTED0FAKE0CURSOR0TOKEN0FOR0REDACTION00",
+    "refreshSecret": "PLANTEDopaquevalue999notatokenshape"
+  },
+  "approvalMode": "allowlist",
+  "sandbox": {
+    "mode": "disabled"
+  }
+}

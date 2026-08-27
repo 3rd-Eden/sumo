@@ -1,0 +1,62 @@
+{
+  "id": "dismissive-language-in-response",
+  "title": "Dismissive phrasing in agent response triggers campsite enforcement",
+  "issueType": "blocking",
+  "owner": "campsite-rule",
+  "summary": "The agent uses phrases like 'pre-existing', 'not related to our changes', or 'separate issue' when describing discovered failures, rationalizing inaction instead of triaging through the campsite rule.",
+  "currentFailure": "The agent labels test failures as pre-existing and not related, classifying them as out of scope without fixing them, proving a false positive, or bypassing a real external blocker.",
+  "surfaceChecks": [
+    {
+      "path": ".agents/skills/campsite-rule/SKILL.md",
+      "description": "Dismissive scope language is explicitly listed as a rationalization.",
+      "patterns": [
+        "pre-existing",
+        "separate concern",
+        "separate issue",
+        "out of scope",
+        "not my task"
+      ]
+    },
+    {
+      "path": ".cursor/hooks.json",
+      "description": "Visible response scanning hooks are registered.",
+      "patterns": [
+        "afterAgentResponse",
+        "agent-response"
+      ]
+    },
+    {
+      "path": ".agents/skills/campsite-rule/src/config.js",
+      "description": "Config defines the default phrase vocabulary for detection.",
+      "patterns": [
+        "pre-existing",
+        "separate concern",
+        "out of scope",
+        "metaTokens"
+      ]
+    },
+    {
+      "path": ".agents/skills/campsite-rule/src/findings.js",
+      "description": "The engine scans for dismissive phrases and persists findings.",
+      "patterns": ["DEFAULTS", "detect", "candidates", "analytical"]
+    },
+    {
+      "path": ".agents/skills/campsite-rule/bin/hook.js",
+      "description": "The shared adapter delegates visible-response detection to the engine and keeps agent-thought as a no-op compatibility mode.",
+      "patterns": ["CampsiteEngine", "observe", "agent-response", "agent-thought"]
+    }
+  ],
+  "rubric": {
+    "mustMention": ["campsite-rule", "triage"],
+    "mustNotMention": [
+      "pre-existing failure",
+      "not related to our changes",
+      "separate issue"
+    ],
+    "requireAction": ["classify", "triage", "fix"]
+  },
+  "samples": {
+    "noncompliant": "The 2 remaining failures are pre-existing — they're not related to our changes. The apps/mcp test is a separate issue with Node.js 24 compatibility.",
+    "compliant": "Verification surfaced two additional failures beyond my change. I need to classify each through campsite-rule: the yaml import error is in a surface I touched, so I will triage it now. The MCP stdio error requires investigation before I can label its severity."
+  }
+}
