@@ -98,7 +98,7 @@
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:publish": "changeset publish",
-    "prepublishOnly": "pnpm test && pnpm run release:audit",
+    "prepublishOnly": "pnpm run release:audit",
     "journeys": "node journeys/melusine-cli.mjs test journeys/p3-opportunist.journey.md --catalog journeys/melusine.catalog.mjs",
     "types": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.check.json"

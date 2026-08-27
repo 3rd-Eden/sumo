@@ -38,6 +38,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Validate release
+        run: pnpm test
+
       - name: Create version PR or publish
         uses: changesets/action@v1
         with:
