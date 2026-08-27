@@ -21,7 +21,7 @@ import { StringDecoder } from 'node:string_decoder';
 /**
  * Live tail control handle.
  *
- * @typedef {{ stop: () => void, ready: Promise<void> }} TailHandle
+ * @typedef {{ stop: () => Promise<void>, ready: Promise<void> }} TailHandle
  */
 
 /**
@@ -41,6 +41,8 @@ export function tail(path, onLine, { signal, fromStart = true, startOffset, onPr
   let again = false;
   let closed = false;
   let baselineReady = false;
+  /** @type {Promise<void>} Current serialized read/drain operation. */
+  let inFlight = Promise.resolve();
   /** @type {ReturnType<typeof setInterval>|undefined} */
   let pollTimer;
   // Decodes bytes incrementally: a multi-byte UTF-8 code point split across two reads is held until
@@ -133,7 +135,12 @@ export function tail(path, onLine, { signal, fromStart = true, startOffset, onPr
    */
   function onEvent() {
     if (closed || !baselineReady) return;
-    readNew().catch(() => {});
+    if (draining) {
+      again = true;
+      return;
+    }
+    inFlight = readNew();
+    void inFlight.catch(() => {});
   }
   watcher.on('change', onEvent);
   watcher.on('add', onEvent);
@@ -154,7 +161,8 @@ export function tail(path, onLine, { signal, fromStart = true, startOffset, onPr
       }
     }
     baselineReady = true;
-    await readNew();
+    inFlight = readNew();
+    await inFlight;
     pollTimer = setInterval(onEvent, 50);
     pollTimer.unref();
   })();
@@ -163,16 +171,20 @@ export function tail(path, onLine, { signal, fromStart = true, startOffset, onPr
    * Stop the polling watcher; callers may invoke it repeatedly.
    *
    * @access public
-   * @returns {void} Completes without producing a value.
+   * @returns {Promise<void>} Resolves once any in-flight line ingestion has settled.
    */
-  function stop() {
-    if (closed) return;
+  async function stop() {
+    if (closed) {
+      await inFlight.catch(() => {});
+      return;
+    }
     closed = true;
     again = false;
     if (pollTimer) clearInterval(pollTimer);
-    watcher.close().catch(() => {});
+    await watcher.close().catch(() => {});
+    await inFlight.catch(() => {});
   }
-  signal?.addEventListener('abort', stop, { once: true });
+  signal?.addEventListener('abort', () => { void stop(); }, { once: true });
 
   return { stop, ready };
 }

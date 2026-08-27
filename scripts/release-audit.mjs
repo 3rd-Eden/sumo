@@ -108,12 +108,21 @@ export function auditPackFiles(files, { required = [] } = {}) {
  */
 function repositoryEntries() {
   const output = execFileSync('git', ['ls-files', '-co', '--exclude-standard', '-z'], { cwd: ROOT });
-  return output.toString('utf8').split('\0').filter(Boolean).flatMap((relative) => {
-    const file = path.join(ROOT, relative);
-    if (!fs.existsSync(file)) return [];
-    const content = fs.readFileSync(file);
-    return content.includes(0) ? [] : [{ path: relative, content: content.toString('utf8') }];
-  });
+  return output.toString('utf8').split('\0').filter(Boolean).flatMap((relative) => readTextEntry(relative, path.join(ROOT, relative)));
+}
+
+/**
+ * Return one text entry when a repository path is a readable regular file.
+ *
+ * @access public
+ * @param {string} relative - Repository-relative path recorded in the audit output.
+ * @param {string} file - Absolute filesystem path to inspect.
+ * @returns {Array<{ path: string, content: string }>} One eligible text entry, or no entry for non-files and binary data.
+ */
+export function readTextEntry(relative, file) {
+  if (!fs.existsSync(file) || !fs.statSync(file).isFile()) return [];
+  const content = fs.readFileSync(file);
+  return content.includes(0) ? [] : [{ path: relative, content: content.toString('utf8') }];
 }
 
 /**
