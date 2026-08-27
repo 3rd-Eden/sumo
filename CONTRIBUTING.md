@@ -89,3 +89,27 @@ names.
 - Do not reformat unrelated files.
 - Do not edit `node_modules/` or generated package-manager state by hand.
 - Preserve unrelated work in the tree.
+
+## Releases
+
+Release-bearing changes must include a Changeset for the root `sumo` package:
+
+```sh
+pnpm changeset
+```
+
+Choose the appropriate semver bump and describe the user-visible change. Changesets are committed
+with the change. On `main`, GitHub Actions creates or updates a `Version Packages` pull request.
+Merging that pull request runs the release checks and publishes the new root package through npm
+Trusted Publishing (OIDC). Internal `packages/*` and `plugins/*` directories are not independently
+published packages.
+
+For changes that do not affect the published package, use an empty Changeset:
+
+```sh
+pnpm changeset --empty
+```
+
+The release workflow requires GitHub Actions permission to create pull requests and npm Trusted
+Publishing configured for package `sumo`, repository `3rd-Eden/sumo`, branch `main`, and
+`.github/workflows/release.yml`. No npm write token belongs in repository secrets or workflow files.
