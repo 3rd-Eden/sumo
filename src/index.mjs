@@ -6,6 +6,7 @@
 import { plugin } from 'sumo/plugin';
 
 export { plugin } from 'sumo/plugin';
+export { VERSION } from './version.mjs';
 
 /**
  * Host facade passed to plugin registration functions.

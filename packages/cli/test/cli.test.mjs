@@ -90,7 +90,7 @@ test('cli entrypoint routes help and daemon status through the real process', /*
   const cli = path.resolve('packages/cli/src/cli.mjs');
   const version = spawnSync(process.execPath, [cli, '--version'], { encoding: 'utf8' });
   assert.equal(version.status, 0);
-  assert.equal(version.stdout.trim(), '1.0.0');
+  assert.equal(version.stdout.trim(), '1.1.0');
 
   const help = spawnSync(process.execPath, [cli, '--help'], { encoding: 'utf8' });
   assert.equal(help.status, 0);
