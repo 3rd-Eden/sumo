@@ -1,6 +1,6 @@
 {
   "name": "sumo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "packageManager": "pnpm@10.18.0",
   "description": "System for Unified Model Orchestration",
   "type": "module",
